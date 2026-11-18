@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Học Tiếng Trung Qua Bài Hát - Hán Ngữ Ca Điệu</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-icon">🎵</span>
+        <div class="brand-text">
+          <h1>Hán Ngữ Ca Điệu</h1>
+          <span class="sub-title">Học Tiếng Trung Từng Câu</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="btn-song-picker" class="btn btn-outline" title="Chọn bài hát">
+          <span class="icon">📑</span> <span class="hide-mobile">Danh sách</span>
+        </button>
+        <button id="btn-add-song" class="btn btn-primary" title="Thêm bài hát mới">
+          <span class="icon">➕</span> <span class="hide-mobile">Thêm bài</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- Song Info & YouTube Player Bar -->
+    <section class="song-header-card">
+      <div class="song-meta">
+        <span id="badge-difficulty" class="badge">Đang tải...</span>
+        <h2 id="song-title">Chọn hoặc tìm bài hát</h2>
+        <p id="song-artist" class="artist-name">---</p>
+      </div>
+
+      <!-- YouTube Embed Container (Collapsible) -->
+      <div class="youtube-wrapper">
+        <div class="youtube-toggle-bar" id="yt-toggle-btn">
+          <span>📺 Video YouTube Gốc (Hát mẫu)</span>
+          <span id="yt-toggle-icon">▼</span>
+        </div>
+        <div class="youtube-player-box" id="yt-player-box">
+          <div id="youtube-player"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sentence Progress & Quick Navigation -->
+    <div class="sentence-progress-bar">
+      <button id="btn-prev-sentence" class="btn-nav" title="Câu trước">‹</button>
+      <div class="sentence-counter">
+        <span id="current-sentence-idx">1</span> / <span id="total-sentences-count">1</span>
+      </div>
+      <button id="btn-next-sentence" class="btn-nav" title="Câu tiếp theo">›</button>
+    </div>
+
+    <!-- Active Sentence Learning Stage -->
+    <section class="sentence-stage-card">
+      
+      <!-- Word-by-word Breakdown Grid -->
+      <div class="word-breakdown-container">
+        <div class="word-grid" id="word-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Grammar & Pronunciation Tips Box -->
+      <div class="tip-box" id="tip-box">
+        <div class="tip-header">
+          <span class="tip-icon">💡</span>
+          <strong>Mẹo phát âm & Ngữ pháp:</strong>
+        </div>
+        <p id="tip-content" class="tip-text">Đang tải ghi chú...</p>
+      </div>
+
+      <!-- Full Sentence Karaoke Stage with Bouncing Ball -->
+      <div class="karaoke-stage">
+        <div class="karaoke-container" id="karaoke-container">
+          <!-- Bouncing Ball -->
+          <div class="bouncing-ball" id="bouncing-ball"></div>
+          <!-- Characters -->
+          <div class="karaoke-chars" id="karaoke-chars">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+        <!-- Vietnamese Meaning -->
+        <div class="sentence-translation" id="sentence-translation">
+          Nghĩa tiếng Việt sẽ hiển thị ở đây
+        </div>
+      </div>
+
+      <!-- Dual-Audio Action Controls -->
+      <div class="controls-toolbar">
+        <div class="btn-group-audio">
+          <!-- Button 1: AI Spoken Audio -->
+          <button id="btn-play-ai" class="btn btn-audio btn-ai" title="AI đọc chậm, chuẩn thanh điệu">
+            <span class="btn-icon">🔊</span>
+            <div class="btn-text-group">
+              <span class="btn-label">Loa AI Chuẩn</span>
+              <span class="btn-sub">Luyện phát âm rõ chữ</span>
+            </div>
+          </button>
+
+          <!-- Button 2: Singer YouTube Audio -->
+          <button id="btn-play-singer" class="btn btn-audio btn-singer" title="Nghe ca sĩ hát câu này">
+            <span class="btn-icon">🎵</span>
+            <div class="btn-text-group">
+              <span class="btn-label">Ca Sĩ Hát Gốc</span>
+              <span class="btn-sub">Đúng giai điệu & luyến láy</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Audio Speed Selector & Loop -->
+        <div class="controls-settings">
+          <label for="speed-select" class="speed-label">Tốc độ AI:</label>
+          <select id="speed-select" class="speed-select">
+            <option value="0.6">0.6x (Rất chậm)</option>
+            <option value="0.8" selected>0.8x (Vừa phải)</option>
+            <option value="1.0">1.0x (Bình thường)</option>
+          </select>
+
+          <button id="btn-loop-sentence" class="btn btn-secondary btn-icon-only" title="Lặp lại câu này">
+            <span id="loop-icon">🔁</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Sentence Quick List (Accordion/Scroll) -->
+    <section class="sentence-list-section">
+      <div class="section-title">
+        <h3>Toàn bộ lời bài hát (Bấm để nhảy câu)</h3>
+      </div>
+      <div class="sentence-list" id="sentence-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal: Danh Sách Bài Hát -->
+  <div class="modal" id="modal-song-picker">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📑 Thư Viện Bài Hát Tiếng Trung</h3>
+        <button class="btn-close" id="btn-close-picker">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-sub">Chọn một bài hát để bắt đầu luyện tập:</p>
+        <div class="song-card-list" id="song-card-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Thêm / Tự Tạo Bài Hát Mới -->
+  <div class="modal" id="modal-add-song">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3>➕ Thêm Bài Hát Mới (Tự động sinh Pinyin)</h3>
+        <button class="btn-close" id="btn-close-add">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Tên bài hát (Kèm chữ Hán nếu có):</label>
+          <input type="text" id="input-song-title" class="form-control" placeholder="Ví dụ: Quan Sơn Tửu (关山酒)">
+        </div>
+        <div class="form-group">
+          <label>Ca sĩ / Nghệ sĩ:</label>
+          <input type="text" id="input-song-artist" class="form-control" placeholder="Ví dụ: Tiểu Hồn (小魂)">
+        </div>
+        <div class="form-group">
+          <label>Mã Video YouTube hoặc Link YouTube:</label>
+          <input type="text" id="input-song-youtube" class="form-control" placeholder="Ví dụ: 8VbXW82l5dY hoặc https://www.youtube.com/watch?v=8VbXW82l5dY">
+          <small class="form-hint">Nhập mã YouTube để có thể nghe ca sĩ hát mẫu từng câu.</small>
+        </div>
+        <div class="form-group">
+          <label>Lời bài hát gốc tiếng Trung (Mỗi câu 1 dòng):</label>
+          <textarea id="input-song-lyrics" class="form-control" rows="6" placeholder="Dán lời tiếng Trung vào đây...
+Ví dụ:
+一壶浊酒望穹庐
+铁骑金戈谁人孤
+横刀立马战匈奴"></textarea>
+        </div>
+        <div class="form-actions">
+          <button id="btn-submit-parse" class="btn btn-primary btn-block">
+            ⚡ Tự động phân tích & Lưu bài hát
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- Application Core Script -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

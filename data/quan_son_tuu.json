@@ -1,0 +1,117 @@
+{
+  "id": "quan_son_tuu",
+  "title": "Quan Sơn Tửu (关山酒)",
+  "artist": "Tiểu Hồn (小魂)",
+  "youtube_id": "8VbXW82l5dY",
+  "difficulty": "Trung cấp",
+  "sentences": [
+    {
+      "id": 1,
+      "hanzi": "一壶浊酒望穹庐",
+      "pinyin": "yī hú zhuó jiǔ wàng qióng lú",
+      "meaning": "Cầm một bầu rượu đục, ngước nhìn vòm trời bao la",
+      "start": 14.5,
+      "end": 18.8,
+      "words": [
+        { "hanzi": "一", "pinyin": "yī", "meaning": "một" },
+        { "hanzi": "壶", "pinyin": "hú", "meaning": "bình / bầu" },
+        { "hanzi": "浊", "pinyin": "zhuó", "meaning": "đục" },
+        { "hanzi": "酒", "pinyin": "jiǔ", "meaning": "rượu" },
+        { "hanzi": "望", "pinyin": "wàng", "meaning": "ngắm / trông" },
+        { "hanzi": "穹", "pinyin": "qióng", "meaning": "vòm trời" },
+        { "hanzi": "庐", "pinyin": "lú", "meaning": "nhà lều / núi non" }
+      ],
+      "note": "Chữ '浊' (zhuó) mang thanh 2, âm 'zh' uốn cong đầu lưỡi chạm ngạc cứng."
+    },
+    {
+      "id": 2,
+      "hanzi": "铁骑金戈谁人孤",
+      "pinyin": "tiě jì jīn gē shéi rén gū",
+      "meaning": "Kỵ binh giáp sắt, giáo vàng, ai là người cô độc?",
+      "start": 19.2,
+      "end": 23.5,
+      "words": [
+        { "hanzi": "铁", "pinyin": "tiě", "meaning": "sắt" },
+        { "hanzi": "骑", "pinyin": "jì", "meaning": "kỵ binh / cưỡi ngựa" },
+        { "hanzi": "金", "pinyin": "jīn", "meaning": "vàng" },
+        { "hanzi": "戈", "pinyin": "gē", "meaning": "cây giáo / vũ khí" },
+        { "hanzi": "谁", "pinyin": "shéi", "meaning": "ai" },
+        { "hanzi": "人", "pinyin": "rén", "meaning": "người" },
+        { "hanzi": "孤", "pinyin": "gū", "meaning": "cô đơn / cô độc" }
+      ],
+      "note": "Từ '铁' (tiě) có âm 't' bật hơi mạnh. '谁' có thể đọc là 'shéi' hoặc 'shuí'."
+    },
+    {
+      "id": 3,
+      "hanzi": "横刀立马战匈奴",
+      "pinyin": "héng dāo lì mǎ zhàn xiōng nú",
+      "meaning": "Vung đao ghìm ngựa quyết chiến với quân Hung Nô",
+      "start": 23.8,
+      "end": 28.0,
+      "words": [
+        { "hanzi": "横", "pinyin": "héng", "meaning": "vung ngang" },
+        { "hanzi": "刀", "pinyin": "dāo", "meaning": "thanh đao" },
+        { "hanzi": "立", "pinyin": "lì", "meaning": "đứng / ghìm" },
+        { "hanzi": "马", "pinyin": "mǎ", "meaning": "ngựa" },
+        { "hanzi": "战", "pinyin": "zhàn", "meaning": "chiến đấu" },
+        { "hanzi": "匈", "pinyin": "xiōng", "meaning": "Hung (trong Hung Nô)" },
+        { "hanzi": "奴", "pinyin": "nú", "meaning": "Nô (trong Hung Nô)" }
+      ],
+      "note": "'横刀立马' (héng dāo lì mǎ) là thành ngữ miêu tả khí thế hiên ngang nơi trận mạc."
+    },
+    {
+      "id": 4,
+      "hanzi": "几度春秋风雨渡",
+      "pinyin": "jǐ dù chūn qiū fēng yǔ dù",
+      "meaning": "Đã trải qua bao độ xuân thu dãi dầu trong mưa gió",
+      "start": 28.3,
+      "end": 33.0,
+      "words": [
+        { "hanzi": "几", "pinyin": "jǐ", "meaning": "mấy / bao nhiêu" },
+        { "hanzi": "度", "pinyin": "dù", "meaning": "lần / độ" },
+        { "hanzi": "春", "pinyin": "chūn", "meaning": "mùa xuân" },
+        { "hanzi": "秋", "pinyin": "qiū", "meaning": "mùa thu" },
+        { "hanzi": "风", "pinyin": "fēng", "meaning": "gió" },
+        { "hanzi": "雨", "pinyin": "yǔ", "meaning": "mưa" },
+        { "hanzi": "渡", "pinyin": "dù", "meaning": "vượt qua" }
+      ],
+      "note": "'春秋' (chūn qiū - xuân thu) là cách nói văn học để chỉ năm tháng, thời gian."
+    },
+    {
+      "id": 5,
+      "hanzi": "看尽人间多少苦",
+      "pinyin": "kàn jìn rén jiān duō shǎo kǔ",
+      "meaning": "Đã nhìn thấu trần gian nếm trải biết bao nhiêu cay đắng",
+      "start": 33.4,
+      "end": 37.8,
+      "words": [
+        { "hanzi": "看", "pinyin": "kàn", "meaning": "nhìn / xem" },
+        { "hanzi": "尽", "pinyin": "jìn", "meaning": "hết / trọn vẹn" },
+        { "hanzi": "人", "pinyin": "rén", "meaning": "người" },
+        { "hanzi": "间", "pinyin": "jiān", "meaning": "gian / chốn" },
+        { "hanzi": "多", "pinyin": "duō", "meaning": "nhiều" },
+        { "hanzi": "少", "pinyin": "shǎo", "meaning": "ít / bao nhiêu" },
+        { "hanzi": "苦", "pinyin": "kǔ", "meaning": "khổ / cay đắng" }
+      ],
+      "note": "'人间' (rén jiān) = nhân gian. Chữ '看' (kàn) thanh 4 đọc dứt khoát."
+    },
+    {
+      "id": 6,
+      "hanzi": "回眸却向关山住",
+      "pinyin": "huí móu què xiàng guān shān zhù",
+      "meaning": "Quay đầu nhìn lại, lòng chỉ muốn dừng bước nương náu chốn Quan Sơn",
+      "start": 38.2,
+      "end": 43.5,
+      "words": [
+        { "hanzi": "回", "pinyin": "huí", "meaning": "quay lại" },
+        { "hanzi": "眸", "pinyin": "móu", "meaning": "ánh mắt" },
+        { "hanzi": "却", "pinyin": "què", "meaning": "lại / nhưng" },
+        { "hanzi": "向", "pinyin": "xiàng", "meaning": "hướng về" },
+        { "hanzi": "关", "pinyin": "guān", "meaning": "ải (cửa ải)" },
+        { "hanzi": "山", "pinyin": "shān", "meaning": "núi" },
+        { "hanzi": "住", "pinyin": "zhù", "meaning": "ở / dừng chân" }
+      ],
+      "note": "'回眸' (huí móu) = ngoảnh lại nhìn. Chữ '住' (zhù) thanh 4, âm 'zh' uốn lưỡi."
+    }
+  ]
+}

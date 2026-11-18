@@ -1,0 +1,114 @@
+{
+  "id": "dong_thoai",
+  "title": "Đồng Thoại (童话)",
+  "artist": "Quang Lương (光良)",
+  "youtube_id": "b0gcV8Pz3o8",
+  "difficulty": "Dễ - Cơ bản",
+  "sentences": [
+    {
+      "id": 1,
+      "hanzi": "忘了有多久",
+      "pinyin": "wàng le yǒu duō jiǔ",
+      "meaning": "Đã quên mất bao lâu rồi",
+      "start": 21.0,
+      "end": 25.2,
+      "words": [
+        { "hanzi": "忘", "pinyin": "wàng", "meaning": "quên" },
+        { "hanzi": "了", "pinyin": "le", "meaning": "rồi" },
+        { "hanzi": "有", "pinyin": "yǒu", "meaning": "có" },
+        { "hanzi": "多", "pinyin": "duō", "meaning": "bao" },
+        { "hanzi": "久", "pinyin": "jiǔ", "meaning": "lâu" }
+      ],
+      "note": "'多久' (duō jiǔ) là cụm từ chỉ thời gian bao lâu. '忘了' đọc nhẹ âm 'le'."
+    },
+    {
+      "id": 2,
+      "hanzi": "再没听到你",
+      "pinyin": "zài méi tīng dào nǐ",
+      "meaning": "Không còn được nghe em",
+      "start": 25.5,
+      "end": 29.8,
+      "words": [
+        { "hanzi": "再", "pinyin": "zài", "meaning": "lại / nữa" },
+        { "hanzi": "没", "pinyin": "méi", "meaning": "không / chưa" },
+        { "hanzi": "听", "pinyin": "tīng", "meaning": "nghe" },
+        { "hanzi": "到", "pinyin": "dào", "meaning": "được / đến" },
+        { "hanzi": "你", "pinyin": "nǐ", "meaning": "em" }
+      ],
+      "note": "'听到' (tīng dào) là kết cấu bổ ngữ chỉ kết quả: nghe thấy / nghe được."
+    },
+    {
+      "id": 3,
+      "hanzi": "对我说你最爱的故事",
+      "pinyin": "duì wǒ shuō nǐ zuì ài de gù shi",
+      "meaning": "Nói với anh câu chuyện em yêu thích nhất",
+      "start": 30.1,
+      "end": 37.0,
+      "words": [
+        { "hanzi": "对", "pinyin": "duì", "meaning": "với" },
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "tôi / anh" },
+        { "hanzi": "说", "pinyin": "shuō", "meaning": "nói" },
+        { "hanzi": "你", "pinyin": "nǐ", "meaning": "em" },
+        { "hanzi": "最", "pinyin": "zuì", "meaning": "nhất" },
+        { "hanzi": "爱", "pinyin": "ài", "meaning": "yêu thích" },
+        { "hanzi": "的", "pinyin": "de", "meaning": "của" },
+        { "hanzi": "故", "pinyin": "gù", "meaning": "cũ / chuyện" },
+        { "hanzi": "事", "pinyin": "shi", "meaning": "việc / chuyện" }
+      ],
+      "note": "'故事' (gù shi): chữ '事' đọc thanh nhẹ (khinh thanh) phát âm ngắn nhẹ."
+    },
+    {
+      "id": 4,
+      "hanzi": "我想了很久",
+      "pinyin": "wǒ xiǎng le hěn jiǔ",
+      "meaning": "Anh đã suy nghĩ rất lâu",
+      "start": 37.5,
+      "end": 42.0,
+      "words": [
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "anh" },
+        { "hanzi": "想", "pinyin": "xiǎng", "meaning": "nghĩ" },
+        { "hanzi": "了", "pinyin": "le", "meaning": "đã / rồi" },
+        { "hanzi": "很", "pinyin": "hěn", "meaning": "rất" },
+        { "hanzi": "久", "pinyin": "jiǔ", "meaning": "lâu" }
+      ],
+      "note": "Hai thanh 3 đi liền: '很久' (hěn jiǔ) thì 'hěn' đọc thành thanh 2 'hén jiǔ'."
+    },
+    {
+      "id": 5,
+      "hanzi": "我常常怀疑",
+      "pinyin": "wǒ cháng cháng huái yí",
+      "meaning": "Anh thường hay hoài nghi",
+      "start": 42.3,
+      "end": 46.8,
+      "words": [
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "anh" },
+        { "hanzi": "常", "pinyin": "cháng", "meaning": "thường" },
+        { "hanzi": "常", "pinyin": "cháng", "meaning": "thường" },
+        { "hanzi": "怀", "pinyin": "huái", "meaning": "ôm ấp / hoài" },
+        { "hanzi": "疑", "pinyin": "yí", "meaning": "nghi ngờ" }
+      ],
+      "note": "'常常' (cháng cháng) = thường xuyên, luôn luôn. '怀疑' (huái yí) = hoài nghi."
+    },
+    {
+      "id": 6,
+      "hanzi": "是不是我又做错了什么",
+      "pinyin": "shì bu shì wǒ yòu zuò cuò le shén me",
+      "meaning": "Có phải chăng anh lại làm sai điều gì rồi",
+      "start": 47.0,
+      "end": 53.5,
+      "words": [
+        { "hanzi": "是", "pinyin": "shì", "meaning": "là / phải" },
+        { "hanzi": "不", "pinyin": "bu", "meaning": "không" },
+        { "hanzi": "是", "pinyin": "shì", "meaning": "là" },
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "anh" },
+        { "hanzi": "又", "pinyin": "yòu", "meaning": "lại" },
+        { "hanzi": "做", "pinyin": "zuò", "meaning": "làm" },
+        { "hanzi": "错", "pinyin": "cuò", "meaning": "sai" },
+        { "hanzi": "了", "pinyin": "le", "meaning": "rồi" },
+        { "hanzi": "什", "pinyin": "shén", "meaning": "gì" },
+        { "hanzi": "么", "pinyin": "me", "meaning": "cái gì" }
+      ],
+      "note": "'是不是' (shì bu shì) là câu hỏi chính phản (có phải hay không)."
+    }
+  ]
+}
