@@ -115,6 +115,56 @@ def save_song():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
 
+@app.route('/api/songs/<song_id>/raw', methods=['GET'])
+def get_raw_song(song_id):
+    """Lấy nội dung chuỗi JSON gốc để hiển thị trên trình soạn thảo JSON."""
+    fpath = os.path.join(DATA_DIR, f"{song_id}.json")
+    if not os.path.exists(fpath):
+        return jsonify({'success': False, 'message': 'Không tìm thấy bài hát'}), 404
+    try:
+        with open(fpath, 'r', encoding='utf-8') as f:
+            raw_text = f.read()
+        return jsonify({'success': True, 'raw_json': raw_text})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/songs/save_raw', methods=['POST'])
+def save_raw_song():
+    """Lưu trực tiếp từ trình soạn thảo JSON trên web."""
+    payload = request.get_json() or {}
+    raw_text = payload.get('raw_json', '')
+    
+    if not raw_text.strip():
+        return jsonify({'success': False, 'message': 'Nội dung JSON trống!'}), 400
+        
+    try:
+        parsed_data = json.loads(raw_text)
+    except Exception as err:
+        return jsonify({'success': False, 'message': f'Cú pháp JSON không hợp lệ: {str(err)}'}), 400
+        
+    song_id = parsed_data.get('id') or slugify(parsed_data.get('title', 'song'))
+    parsed_data['id'] = song_id
+    
+    fpath = os.path.join(DATA_DIR, f"{song_id}.json")
+    try:
+        with open(fpath, 'w', encoding='utf-8') as f:
+            json.dump(parsed_data, f, ensure_ascii=False, indent=2)
+        return jsonify({'success': True, 'song_id': song_id, 'message': f'Đã lưu thành công bài hát [{song_id}]!'})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/songs/<song_id>', methods=['DELETE'])
+def delete_song(song_id):
+    """Xóa bài hát trực tiếp trên web."""
+    fpath = os.path.join(DATA_DIR, f"{song_id}.json")
+    if not os.path.exists(fpath):
+        return jsonify({'success': False, 'message': 'Không tìm thấy bài hát để xóa'}), 404
+    try:
+        os.remove(fpath)
+        return jsonify({'success': True, 'message': 'Đã xóa bài hát thành công!'})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
 if __name__ == '__main__':
     # Chạy trên máy cục bộ cổng 5000
     app.run(host='0.0.0.0', port=5000, debug=True)

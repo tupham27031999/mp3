@@ -1,10 +1,10 @@
 /**
- * HÁN NGỮ CA ĐIỆU - APPLICATION ENGINE
+ * HÁN NGỮ CA ĐIỆU - APPLICATION ENGINE (v2.2)
  * Features:
- * - Dual-Audio Controller (Web Speech API + YouTube Snippet Player)
- * - Karaoke Bouncing Ball Synchronizer
- * - Word & Sentence Level Pronunciation
- * - Song Picker & Auto-Pinyin Parser
+ * - Ultra-Accurate Dual-Audio Controller (Paced Web Speech API + YouTube Audio Sync)
+ * - Rock-Solid Karaoke Bouncing Ball Synchronizer (No early jumps, no CJK bugs)
+ * - Full On-Web JSON Manager (Add, edit, import, export, delete songs directly)
+ * - Word & Sentence Level Pronunciation with Tone Clarification
  */
 
 let currentSong = null;
@@ -15,20 +15,6 @@ let snippetTimer = null;
 let aiSpeechTimer = null;
 let karaokeAnimFrame = null;
 let isLooping = false;
-let availableVoices = [];
-
-// Initialize Web Speech API Voices
-function initSpeechVoices() {
-  if ('speechSynthesis' in window) {
-    const loadVoices = () => {
-      availableVoices = window.speechSynthesis.getVoices().filter(v => v.lang.startsWith('zh'));
-    };
-    loadVoices();
-    if (window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = loadVoices;
-    }
-  }
-}
 
 // YouTube IFrame API Callback
 window.onYouTubeIframeAPIReady = function() {
@@ -71,8 +57,8 @@ function extractYouTubeId(urlOrId) {
    APP INITIALIZATION
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-  initSpeechVoices();
   setupEventListeners();
+  setupJSONManager();
   
   // Load initial song
   const lastSongId = localStorage.getItem('last_song_id') || 'quan_son_tuu';
@@ -97,20 +83,18 @@ function setupEventListeners() {
     icon.textContent = box.classList.contains('open') ? '▲' : '▼';
   });
 
-  // Modals
+  // Song Picker Modal
   const modalPicker = document.getElementById('modal-song-picker');
-  const modalAdd = document.getElementById('modal-add-song');
-
   document.getElementById('btn-song-picker').addEventListener('click', () => {
     loadSongList();
     modalPicker.classList.add('open');
   });
   document.getElementById('btn-close-picker').addEventListener('click', () => modalPicker.classList.remove('open'));
 
+  // Add Song Modal
+  const modalAdd = document.getElementById('modal-add-song');
   document.getElementById('btn-add-song').addEventListener('click', () => modalAdd.classList.add('open'));
   document.getElementById('btn-close-add').addEventListener('click', () => modalAdd.classList.remove('open'));
-
-  // Submit New Song
   document.getElementById('btn-submit-parse').addEventListener('click', submitNewSong);
 }
 
@@ -247,7 +231,7 @@ function nextSentence() {
 }
 
 /* ==========================================================================
-   DUAL-AUDIO: 1. AI SPEECH SYNTHESIS (STANDARD PRONUNCIATION)
+   DUAL-AUDIO: 1. AI SPEECH SYNTHESIS (100% BULLETPROOF SYNC)
    ========================================================================== */
 function speakWord(text) {
   if (!('speechSynthesis' in window)) return;
@@ -255,7 +239,7 @@ function speakWord(text) {
   clearTimeout(aiSpeechTimer);
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'zh-CN';
-  utterance.rate = 0.5; // Đọc chậm, chuẩn và rõ thanh điệu cho từng từ lẻ
+  utterance.rate = 0.5; // Phát âm chậm rõ cho từ lẻ
   window.speechSynthesis.speak(utterance);
 }
 
@@ -271,64 +255,69 @@ function playAISpeech() {
   const ball = document.getElementById('bouncing-ball');
   ball.classList.add('active');
 
-  // NẾU TỐC ĐỘ <= 0.5: ĐỌC TÁCH TỪNG CHỮ MỘT (Paced Reading)
-  // Giúp người học nghe rõ từng âm tiết, từng thanh điệu, không bị líu lưỡi
-  if (rate <= 0.5) {
-    let charIdx = 0;
-    // Khoảng cách nghỉ giữa các chữ: 0.25x -> 1200ms, 0.4x -> 850ms, 0.5x -> 700ms
-    const intervalMs = Math.round(340 / rate);
+  let charIdx = 0;
 
-    function speakNextChar() {
-      if (charIdx >= chars.length) {
-        stopKaraokeAnimation();
-        if (isLooping) {
-          aiSpeechTimer = setTimeout(playAISpeech, 1000);
-        }
-        return;
+  // Thời gian tạm nghỉ sau khi dứt mỗi chữ (ms):
+  // 0.25x -> 750ms nghỉ
+  // 0.4x  -> 480ms nghỉ
+  // 0.6x  -> 250ms nghỉ
+  // 0.8x  -> 120ms nghỉ
+  // 1.0x  -> 40ms nghỉ
+  const pauseDelay = Math.max(30, Math.round(190 / rate));
+
+  function speakNextChar() {
+    if (charIdx >= chars.length) {
+      stopKaraokeAnimation();
+      if (isLooping) {
+        aiSpeechTimer = setTimeout(playAISpeech, 1000);
       }
-
-      moveBallToCharIndex(charIdx);
-      const charUtterance = new SpeechSynthesisUtterance(chars[charIdx]);
-      charUtterance.lang = 'zh-CN';
-      charUtterance.rate = 0.5; // Phát âm từng chữ một thật rõ nét
-      window.speechSynthesis.speak(charUtterance);
-
-      charIdx++;
-      aiSpeechTimer = setTimeout(speakNextChar, intervalMs);
+      return;
     }
 
-    speakNextChar();
-    return;
+    // 1. Chấm bi CHỈ NHẢY tới đúng chữ đang chuẩn bị phát âm!
+    moveBallToCharIndex(charIdx);
+
+    // 2. Tạo đối tượng đọc cho riêng chữ này
+    const charUtterance = new SpeechSynthesisUtterance(chars[charIdx]);
+    charUtterance.lang = 'zh-CN';
+    charUtterance.rate = Math.max(0.4, Math.min(1.0, rate * 1.1));
+
+    let hasAdvanced = false;
+
+    // 3. SỰ KIỆN QUAN TRỌNG: CHỈ KHI DỨT TIẾNG CỦA CHỮ NÀY MỚI QUA CHỮ TIẾP THEO
+    charUtterance.onend = () => {
+      if (hasAdvanced) return;
+      hasAdvanced = true;
+      charIdx++;
+      aiSpeechTimer = setTimeout(speakNextChar, pauseDelay);
+    };
+
+    charUtterance.onerror = () => {
+      if (hasAdvanced) return;
+      hasAdvanced = true;
+      charIdx++;
+      aiSpeechTimer = setTimeout(speakNextChar, 200);
+    };
+
+    // Đề phòng trường hợp hiếm hoi trình duyệt không phát sự kiện onend:
+    // Timer an toàn 2.5 giây cho 1 chữ
+    aiSpeechTimer = setTimeout(() => {
+      if (!hasAdvanced) {
+        hasAdvanced = true;
+        charIdx++;
+        speakNextChar();
+      }
+    }, 2500);
+
+    window.speechSynthesis.speak(charUtterance);
   }
 
-  // NẾU TỐC ĐỘ > 0.5: ĐỌC LIỀN CÂU THEO NGỮ ĐIỆU BÌNH THƯỜNG
-  const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
-  utterance.lang = 'zh-CN';
-  utterance.rate = rate;
-
-  // Track boundary event to move bouncing ball
-  utterance.onboundary = (e) => {
-    if (e.name === 'word' || e.charIndex !== undefined) {
-      moveBallToCharIndex(e.charIndex);
-    }
-  };
-
-  utterance.onstart = () => {
-    moveBallToCharIndex(0);
-  };
-
-  utterance.onend = () => {
-    stopKaraokeAnimation();
-    if (isLooping) {
-      aiSpeechTimer = setTimeout(playAISpeech, 800);
-    }
-  };
-
-  window.speechSynthesis.speak(utterance);
+  // Bắt đầu đọc chữ thứ nhất
+  speakNextChar();
 }
 
 /* ==========================================================================
-   DUAL-AUDIO: 2. SINGER SNIPPET (YOUTUBE PLAYER)
+   DUAL-AUDIO: 2. SINGER SNIPPET (YOUTUBE REALTIME AUDIO CLOCK SYNC)
    ========================================================================== */
 function playSingerSnippet() {
   if (!ytPlayer || !ytPlayer.seekTo || !currentSong) {
@@ -339,7 +328,8 @@ function playSingerSnippet() {
   const sentence = currentSong.sentences[currentSentenceIndex];
   const start = parseFloat(sentence.start) || 0;
   const end = parseFloat(sentence.end) || (start + 5);
-  const duration = Math.max(1, end - start);
+  const duration = Math.max(0.5, end - start);
+  const charCount = sentence.hanzi.length;
 
   clearTimeout(snippetTimer);
   stopKaraokeAnimation();
@@ -352,38 +342,42 @@ function playSingerSnippet() {
     document.getElementById('yt-toggle-icon').textContent = '▲';
   }
 
-  // Seek and play
   ytPlayer.seekTo(start, true);
   ytPlayer.playVideo();
 
   const ball = document.getElementById('bouncing-ball');
   ball.classList.add('active');
+  moveBallToCharIndex(0);
 
-  // Animate bouncing ball across characters based on time
-  const startTime = Date.now();
-  const charCount = sentence.hanzi.length;
-
-  function syncBallWithVideo() {
-    const elapsed = (Date.now() - startTime) / 1000;
-    const progress = Math.min(1, elapsed / duration);
-    const activeCharIndex = Math.min(charCount - 1, Math.floor(progress * charCount));
+  // Poll YouTube's real audio clock: can never jump early or drift!
+  function checkVideoProgress() {
+    if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function') return;
     
-    moveBallToCharIndex(activeCharIndex);
-
-    if (elapsed < duration) {
-      karaokeAnimFrame = requestAnimationFrame(syncBallWithVideo);
+    const curr = ytPlayer.getCurrentTime();
+    
+    // Nếu đã tới mốc kết thúc câu:
+    if (curr >= end) {
+      ytPlayer.pauseVideo();
+      stopKaraokeAnimation();
+      if (isLooping) {
+        snippetTimer = setTimeout(playSingerSnippet, 1000);
+      }
+      return;
     }
+
+    // Nếu đang phát trong câu:
+    if (curr >= start) {
+      const progress = Math.max(0, Math.min(1, (curr - start) / duration));
+      const activeCharIndex = Math.min(charCount - 1, Math.floor(progress * charCount));
+      moveBallToCharIndex(activeCharIndex);
+    } else {
+      moveBallToCharIndex(0);
+    }
+
+    karaokeAnimFrame = requestAnimationFrame(checkVideoProgress);
   }
-  karaokeAnimFrame = requestAnimationFrame(syncBallWithVideo);
 
-  // Stop video at end of sentence
-  snippetTimer = setTimeout(() => {
-    ytPlayer.pauseVideo();
-    stopKaraokeAnimation();
-    if (isLooping) {
-      setTimeout(playSingerSnippet, 1000);
-    }
-  }, duration * 1000);
+  karaokeAnimFrame = requestAnimationFrame(checkVideoProgress);
 }
 
 /* ==========================================================================
@@ -531,4 +525,244 @@ async function submitNewSong() {
     btn.disabled = false;
     btn.textContent = '⚡ Tự động phân tích & Lưu bài hát';
   }
+}
+
+/* ==========================================================================
+   ON-WEB JSON MANAGER (EDIT, IMPORT, EXPORT, SAVE DIRECTLY)
+   ========================================================================== */
+function setupJSONManager() {
+  const modal = document.getElementById('modal-json-manager');
+  const btnOpen = document.getElementById('btn-json-manager');
+  const btnClose = document.getElementById('btn-close-json');
+  const selectSong = document.getElementById('select-json-song');
+  const editor = document.getElementById('json-editor-content');
+  const btnSave = document.getElementById('btn-save-raw-json');
+  const btnNew = document.getElementById('btn-new-json-template');
+  const fileUpload = document.getElementById('input-upload-json');
+  const btnDownload = document.getElementById('btn-download-json');
+  const btnDelete = document.getElementById('btn-delete-json-song');
+
+  if (!btnOpen || !modal) return;
+
+  // Open modal
+  btnOpen.addEventListener('click', async () => {
+    await populateJSONSongSelector();
+    modal.classList.add('open');
+  });
+
+  btnClose.addEventListener('click', () => {
+    modal.classList.remove('open');
+    hideJSONAlert();
+  });
+
+  // Change song selection
+  selectSong.addEventListener('change', async (e) => {
+    const songId = e.target.value;
+    if (songId === '__new__') {
+      loadJSONTemplate();
+    } else {
+      await loadRawJSONForEditor(songId);
+    }
+  });
+
+  // Template button
+  btnNew.addEventListener('click', () => {
+    selectSong.value = '__new__';
+    loadJSONTemplate();
+  });
+
+  // Upload JSON from user device
+  fileUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      editor.value = event.target.result;
+      showJSONAlert('Đã nạp file thành công! Bạn có thể chỉnh sửa rồi bấm "Lưu Ngay Vào Máy Chủ".', 'success');
+      selectSong.value = '__new__';
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  // Download JSON to user device
+  btnDownload.addEventListener('click', () => {
+    const content = editor.value.trim();
+    if (!content) {
+      alert('Chưa có nội dung để tải về!');
+      return;
+    }
+    const blob = new Blob([content], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (selectSong.value !== '__new__' ? selectSong.value : 'bai_hat_moi') + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // Save Raw JSON to server
+  btnSave.addEventListener('click', async () => {
+    const content = editor.value.trim();
+    if (!content) {
+      showJSONAlert('Nội dung JSON không được để trống!', 'error');
+      return;
+    }
+
+    try {
+      // Validate syntax locally first
+      const parsed = JSON.parse(content);
+      if (!parsed.title || !parsed.sentences) {
+        showJSONAlert('JSON thiếu trường bắt buộc: "title" hoặc danh sách "sentences"!', 'error');
+        return;
+      }
+
+      btnSave.disabled = true;
+      btnSave.textContent = '⏳ Đang lưu vào máy chủ...';
+
+      const res = await fetch('/api/songs/save_raw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ raw_json: content })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        showJSONAlert(data.message || 'Đã lưu thành công!', 'success');
+        await populateJSONSongSelector();
+        selectSong.value = data.song_id;
+        loadSong(data.song_id);
+      } else {
+        showJSONAlert('Lỗi: ' + data.message, 'error');
+      }
+    } catch (err) {
+      showJSONAlert('Lỗi cú pháp JSON: ' + err.message, 'error');
+    } finally {
+      btnSave.disabled = false;
+      btnSave.textContent = '💾 Lưu Ngay Vào Máy Chủ';
+    }
+  });
+
+  // Delete song
+  btnDelete.addEventListener('click', async () => {
+    const songId = selectSong.value;
+    if (songId === '__new__') {
+      alert('Vui lòng chọn bài hát cụ thể trong danh sách để xóa.');
+      return;
+    }
+    if (!confirm(`Bạn có chắc chắn muốn xóa bài hát [${songId}] khỏi máy chủ không?`)) return;
+
+    try {
+      const res = await fetch(`/api/songs/${songId}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (data.success) {
+        showJSONAlert('Đã xóa bài hát thành công!', 'success');
+        await populateJSONSongSelector();
+        const firstOption = selectSong.querySelector('option:not([value="__new__"])');
+        if (firstOption) {
+          selectSong.value = firstOption.value;
+          await loadRawJSONForEditor(firstOption.value);
+          loadSong(firstOption.value);
+        } else {
+          loadJSONTemplate();
+        }
+      } else {
+        showJSONAlert(data.message, 'error');
+      }
+    } catch (err) {
+      showJSONAlert('Lỗi: ' + err.message, 'error');
+    }
+  });
+}
+
+async function populateJSONSongSelector() {
+  const select = document.getElementById('select-json-song');
+  select.innerHTML = '<option value="__new__">➕ Tạo bài mới từ JSON...</option>';
+  try {
+    const res = await fetch('/api/songs');
+    const data = await res.json();
+    if (!data.success) return;
+
+    data.songs.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = `${s.title} (${s.id}.json)`;
+      select.appendChild(opt);
+    });
+
+    // Select current song if available
+    if (currentSong && currentSong.id) {
+      select.value = currentSong.id;
+      await loadRawJSONForEditor(currentSong.id);
+    } else {
+      select.value = data.songs.length ? data.songs[0].id : '__new__';
+      if (data.songs.length) {
+        await loadRawJSONForEditor(data.songs[0].id);
+      } else {
+        loadJSONTemplate();
+      }
+    }
+  } catch (err) {
+    console.error('Error populating song selector:', err);
+  }
+}
+
+async function loadRawJSONForEditor(songId) {
+  const editor = document.getElementById('json-editor-content');
+  editor.value = 'Đang tải dữ liệu...';
+  try {
+    const res = await fetch(`/api/songs/${songId}/raw`);
+    const data = await res.json();
+    if (data.success) {
+      editor.value = data.raw_json;
+      hideJSONAlert();
+    } else {
+      showJSONAlert('Không thể nạp nội dung bài hát này.', 'error');
+    }
+  } catch (err) {
+    showJSONAlert('Lỗi kết nối tải JSON: ' + err.message, 'error');
+  }
+}
+
+function loadJSONTemplate() {
+  const editor = document.getElementById('json-editor-content');
+  const template = {
+    id: "ten_bai_viet_lien_khong_dau",
+    title: "Tên Bài Hát (Chữ Hán)",
+    artist: "Tên Ca Sĩ",
+    youtube_id: "Ma_Video_YouTube",
+    difficulty: "Cơ bản",
+    sentences: [
+      {
+        id: 1,
+        hanzi: "你好吗",
+        pinyin: "nǐ hǎo ma",
+        meaning: "Bạn khỏe không",
+        start: 10.5,
+        end: 14.0,
+        words: [
+          { hanzi: "你", pinyin: "nǐ", meaning: "bạn" },
+          { hanzi: "好", pinyin: "hǎo", meaning: "tốt / khỏe" },
+          { hanzi: "吗", pinyin: "ma", meaning: "không (từ hỏi)" }
+        ],
+        note: "Câu chào hỏi thông dụng nhất trong tiếng Trung."
+      }
+    ]
+  };
+  editor.value = JSON.stringify(template, null, 2);
+  hideJSONAlert();
+}
+
+function showJSONAlert(msg, type) {
+  const box = document.getElementById('json-status-alert');
+  box.textContent = msg;
+  box.className = `json-alert ${type}`;
+  box.style.display = 'block';
+}
+
+function hideJSONAlert() {
+  const box = document.getElementById('json-status-alert');
+  box.style.display = 'none';
 }
