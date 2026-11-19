@@ -1,117 +1,245 @@
 {
   "id": "quan_son_tuu",
   "title": "Quan Sơn Tửu (关山酒)",
-  "artist": "Tiểu Hồn (小魂)",
-  "youtube_id": "8VbXW82l5dY",
+  "artist": "Đẳng Thập Ma Quân (等什么君)",
+  "youtube_id": "vK2vA8Vefk4",
   "difficulty": "Trung cấp",
   "sentences": [
     {
       "id": 1,
-      "hanzi": "一壶浊酒望穹庐",
-      "pinyin": "yī hú zhuó jiǔ wàng qióng lú",
-      "meaning": "Cầm một bầu rượu đục, ngước nhìn vòm trời bao la",
-      "start": 14.5,
-      "end": 18.8,
+      "hanzi": "我自关山点酒",
+      "pinyin": "wǒ zì guān shān diǎn jiǔ",
+      "meaning": "Ta từ chốn Quan Sơn rót một chén rượu",
+      "start": 18.8,
+      "end": 22.5,
       "words": [
-        { "hanzi": "一", "pinyin": "yī", "meaning": "một" },
-        { "hanzi": "壶", "pinyin": "hú", "meaning": "bình / bầu" },
-        { "hanzi": "浊", "pinyin": "zhuó", "meaning": "đục" },
-        { "hanzi": "酒", "pinyin": "jiǔ", "meaning": "rượu" },
-        { "hanzi": "望", "pinyin": "wàng", "meaning": "ngắm / trông" },
-        { "hanzi": "穹", "pinyin": "qióng", "meaning": "vòm trời" },
-        { "hanzi": "庐", "pinyin": "lú", "meaning": "nhà lều / núi non" }
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "ta / tôi" },
+        { "hanzi": "自", "pinyin": "zì", "meaning": "từ / nơi" },
+        { "hanzi": "关", "pinyin": "guān", "meaning": "ải / cửa ải" },
+        { "hanzi": "山", "pinyin": "shān", "meaning": "núi (Quan Sơn)" },
+        { "hanzi": "点", "pinyin": "diǎn", "meaning": "rót / gọi" },
+        { "hanzi": "酒", "pinyin": "jiǔ", "meaning": "rượu" }
       ],
-      "note": "Chữ '浊' (zhuó) mang thanh 2, âm 'zh' uốn cong đầu lưỡi chạm ngạc cứng."
+      "note": "'关山' (Guān shān) là tên cửa ải biên cương thời cổ. '点酒' nghĩa là rót rượu, gọi rượu thưởng thức."
     },
     {
       "id": 2,
-      "hanzi": "铁骑金戈谁人孤",
-      "pinyin": "tiě jì jīn gē shéi rén gū",
-      "meaning": "Kỵ binh giáp sắt, giáo vàng, ai là người cô độc?",
-      "start": 19.2,
-      "end": 23.5,
+      "hanzi": "千秋皆入喉",
+      "pinyin": "qiān qiū jiē rù hóu",
+      "meaning": "Chuyện ngàn thu năm tháng đều trôi vào cuống họng",
+      "start": 22.8,
+      "end": 26.5,
       "words": [
-        { "hanzi": "铁", "pinyin": "tiě", "meaning": "sắt" },
-        { "hanzi": "骑", "pinyin": "jì", "meaning": "kỵ binh / cưỡi ngựa" },
-        { "hanzi": "金", "pinyin": "jīn", "meaning": "vàng" },
-        { "hanzi": "戈", "pinyin": "gē", "meaning": "cây giáo / vũ khí" },
-        { "hanzi": "谁", "pinyin": "shéi", "meaning": "ai" },
-        { "hanzi": "人", "pinyin": "rén", "meaning": "người" },
-        { "hanzi": "孤", "pinyin": "gū", "meaning": "cô đơn / cô độc" }
+        { "hanzi": "千", "pinyin": "qiān", "meaning": "nghìn" },
+        { "hanzi": "秋", "pinyin": "qiū", "meaning": "mùa thu / năm" },
+        { "hanzi": "皆", "pinyin": "jiē", "meaning": "đều / thảy" },
+        { "hanzi": "入", "pinyin": "rù", "meaning": "vào" },
+        { "hanzi": "喉", "pinyin": "hóu", "meaning": "họng / cổ họng" }
       ],
-      "note": "Từ '铁' (tiě) có âm 't' bật hơi mạnh. '谁' có thể đọc là 'shéi' hoặc 'shuí'."
+      "note": "'千秋' (qiān qiū) tượng trưng cho ngàn năm lịch sử, thăng trầm thời gian."
     },
     {
       "id": 3,
-      "hanzi": "横刀立马战匈奴",
-      "pinyin": "héng dāo lì mǎ zhàn xiōng nú",
-      "meaning": "Vung đao ghìm ngựa quyết chiến với quân Hung Nô",
-      "start": 23.8,
-      "end": 28.0,
+      "hanzi": "更有沸雪酌与风云某",
+      "pinyin": "gèng yǒu fèi xuě zhuó yǔ fēng yún mǒu",
+      "meaning": "Lại đem tuyết sôi chuốc cạn cùng ai đó giữa chốn phong vân",
+      "start": 26.8,
+      "end": 32.8,
       "words": [
-        { "hanzi": "横", "pinyin": "héng", "meaning": "vung ngang" },
-        { "hanzi": "刀", "pinyin": "dāo", "meaning": "thanh đao" },
-        { "hanzi": "立", "pinyin": "lì", "meaning": "đứng / ghìm" },
-        { "hanzi": "马", "pinyin": "mǎ", "meaning": "ngựa" },
-        { "hanzi": "战", "pinyin": "zhàn", "meaning": "chiến đấu" },
-        { "hanzi": "匈", "pinyin": "xiōng", "meaning": "Hung (trong Hung Nô)" },
-        { "hanzi": "奴", "pinyin": "nú", "meaning": "Nô (trong Hung Nô)" }
+        { "hanzi": "更", "pinyin": "gèng", "meaning": "lại / càng" },
+        { "hanzi": "有", "pinyin": "yǒu", "meaning": "có" },
+        { "hanzi": "沸", "pinyin": "fèi", "meaning": "sôi" },
+        { "hanzi": "雪", "pinyin": "xuě", "meaning": "tuyết" },
+        { "hanzi": "酌", "pinyin": "zhuó", "meaning": "uống / rót rượu" },
+        { "hanzi": "与", "pinyin": "yǔ", "meaning": "cùng với" },
+        { "hanzi": "风", "pinyin": "fēng", "meaning": "gió" },
+        { "hanzi": "云", "pinyin": "yún", "meaning": "mây" },
+        { "hanzi": "某", "pinyin": "mǒu", "meaning": "ai đó / mỗ" }
       ],
-      "note": "'横刀立马' (héng dāo lì mǎ) là thành ngữ miêu tả khí thế hiên ngang nơi trận mạc."
+      "note": "'沸雪' (fèi xuě): tuyết đang sôi, hình ảnh ẩn dụ hào khí biên cương lạnh giá."
     },
     {
       "id": 4,
-      "hanzi": "几度春秋风雨渡",
-      "pinyin": "jǐ dù chūn qiū fēng yǔ dù",
-      "meaning": "Đã trải qua bao độ xuân thu dãi dầu trong mưa gió",
-      "start": 28.3,
-      "end": 33.0,
+      "hanzi": "我是千里故人",
+      "pinyin": "wǒ shì qiān lǐ gù rén",
+      "meaning": "Ta là người bạn cũ từ ngàn dặm xa xôi trở về",
+      "start": 33.0,
+      "end": 36.8,
       "words": [
-        { "hanzi": "几", "pinyin": "jǐ", "meaning": "mấy / bao nhiêu" },
-        { "hanzi": "度", "pinyin": "dù", "meaning": "lần / độ" },
-        { "hanzi": "春", "pinyin": "chūn", "meaning": "mùa xuân" },
-        { "hanzi": "秋", "pinyin": "qiū", "meaning": "mùa thu" },
-        { "hanzi": "风", "pinyin": "fēng", "meaning": "gió" },
-        { "hanzi": "雨", "pinyin": "yǔ", "meaning": "mưa" },
-        { "hanzi": "渡", "pinyin": "dù", "meaning": "vượt qua" }
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "ta" },
+        { "hanzi": "是", "pinyin": "shì", "meaning": "là" },
+        { "hanzi": "千", "pinyin": "qiān", "meaning": "nghìn" },
+        { "hanzi": "里", "pinyin": "lǐ", "meaning": "dặm" },
+        { "hanzi": "故", "pinyin": "gù", "meaning": "cũ / xưa" },
+        { "hanzi": "人", "pinyin": "rén", "meaning": "người" }
       ],
-      "note": "'春秋' (chūn qiū - xuân thu) là cách nói văn học để chỉ năm tháng, thời gian."
+      "note": "'故人' (gù rén) = người quen cũ, tri kỷ xưa từ phương xa."
     },
     {
       "id": 5,
-      "hanzi": "看尽人间多少苦",
-      "pinyin": "kàn jìn rén jiān duō shǎo kǔ",
-      "meaning": "Đã nhìn thấu trần gian nếm trải biết bao nhiêu cay đắng",
-      "start": 33.4,
-      "end": 37.8,
+      "hanzi": "青山应白首",
+      "pinyin": "qīng shān yīng bái shǒu",
+      "meaning": "Ngắm rặng núi xanh ngắt nay cũng đã bạc đầu",
+      "start": 37.0,
+      "end": 40.8,
       "words": [
-        { "hanzi": "看", "pinyin": "kàn", "meaning": "nhìn / xem" },
-        { "hanzi": "尽", "pinyin": "jìn", "meaning": "hết / trọn vẹn" },
-        { "hanzi": "人", "pinyin": "rén", "meaning": "người" },
-        { "hanzi": "间", "pinyin": "jiān", "meaning": "gian / chốn" },
-        { "hanzi": "多", "pinyin": "duō", "meaning": "nhiều" },
-        { "hanzi": "少", "pinyin": "shǎo", "meaning": "ít / bao nhiêu" },
-        { "hanzi": "苦", "pinyin": "kǔ", "meaning": "khổ / cay đắng" }
+        { "hanzi": "青", "pinyin": "qīng", "meaning": "xanh" },
+        { "hanzi": "山", "pinyin": "shān", "meaning": "núi" },
+        { "hanzi": "应", "pinyin": "yīng", "meaning": "nên / cũng" },
+        { "hanzi": "白", "pinyin": "bái", "meaning": "trắng" },
+        { "hanzi": "首", "pinyin": "shǒu", "meaning": "đầu" }
       ],
-      "note": "'人间' (rén jiān) = nhân gian. Chữ '看' (kàn) thanh 4 đọc dứt khoát."
+      "note": "'白首' (bái shǒu) = đầu bạc, ý nói thời gian trôi qua quá nhanh làm già đi mọi thứ."
     },
     {
       "id": 6,
-      "hanzi": "回眸却向关山住",
-      "pinyin": "huí móu què xiàng guān shān zhù",
-      "meaning": "Quay đầu nhìn lại, lòng chỉ muốn dừng bước nương náu chốn Quan Sơn",
-      "start": 38.2,
-      "end": 43.5,
+      "hanzi": "年少犹借银枪逞风流",
+      "pinyin": "nián shào yóu jiè yín qiāng chěng fēng liú",
+      "meaning": "Thời niên thiếu vẫn mượn ngọn giáo bạc phô diễn vẻ phong lưu anh dũng",
+      "start": 41.0,
+      "end": 47.0,
       "words": [
-        { "hanzi": "回", "pinyin": "huí", "meaning": "quay lại" },
-        { "hanzi": "眸", "pinyin": "móu", "meaning": "ánh mắt" },
-        { "hanzi": "却", "pinyin": "què", "meaning": "lại / nhưng" },
-        { "hanzi": "向", "pinyin": "xiàng", "meaning": "hướng về" },
-        { "hanzi": "关", "pinyin": "guān", "meaning": "ải (cửa ải)" },
-        { "hanzi": "山", "pinyin": "shān", "meaning": "núi" },
-        { "hanzi": "住", "pinyin": "zhù", "meaning": "ở / dừng chân" }
+        { "hanzi": "年", "pinyin": "nián", "meaning": "năm" },
+        { "hanzi": "少", "pinyin": "shào", "meaning": "trẻ / thiếu" },
+        { "hanzi": "犹", "pinyin": "yóu", "meaning": "vẫn / còn" },
+        { "hanzi": "借", "pinyin": "jiè", "meaning": "mượn / nhờ" },
+        { "hanzi": "银", "pinyin": "yín", "meaning": "bạc" },
+        { "hanzi": "枪", "pinyin": "qiāng", "meaning": "giáo / súng" },
+        { "hanzi": "逞", "pinyin": "chěng", "meaning": "khoe / phô" },
+        { "hanzi": "风", "pinyin": "fēng", "meaning": "phong" },
+        { "hanzi": "流", "pinyin": "liú", "meaning": "lưu" }
       ],
-      "note": "'回眸' (huí móu) = ngoảnh lại nhìn. Chữ '住' (zhù) thanh 4, âm 'zh' uốn lưỡi."
+      "note": "'银枪' (yín qiāng) = thương bạc/giáo bạc. Chữ '少' trong '年少' đọc thanh 4 (shào)."
+    },
+    {
+      "id": 7,
+      "hanzi": "几载风雪卷刃",
+      "pinyin": "jǐ zǎi fēng xuě juǎn rèn",
+      "meaning": "Mấy năm sương gió mài mòn cong cả lưỡi đao",
+      "start": 47.5,
+      "end": 51.5,
+      "words": [
+        { "hanzi": "几", "pinyin": "jǐ", "meaning": "mấy" },
+        { "hanzi": "载", "pinyin": "zǎi", "meaning": "năm" },
+        { "hanzi": "风", "pinyin": "fēng", "meaning": "gió" },
+        { "hanzi": "雪", "pinyin": "xuě", "meaning": "tuyết" },
+        { "hanzi": "卷", "pinyin": "juǎn", "meaning": "cuốn / mẻ" },
+        { "hanzi": "刃", "pinyin": "rèn", "meaning": "lưỡi dao" }
+      ],
+      "note": "'载' (zǎi) là đơn vị đếm năm tháng thời xưa. '卷刃' nghĩa là mép đao bị mẻ do chinh chiến."
+    },
+    {
+      "id": 8,
+      "hanzi": "朔风同孤昼",
+      "pinyin": "shuò fēng tóng gū zhòu",
+      "meaning": "Cùng ngọn gió bấc phương Bắc trải qua những ngày cô quạnh",
+      "start": 51.8,
+      "end": 55.5,
+      "words": [
+        { "hanzi": "朔", "pinyin": "shuò", "meaning": "phương Bắc" },
+        { "hanzi": "风", "pinyin": "fēng", "meaning": "gió" },
+        { "hanzi": "同", "pinyin": "tóng", "meaning": "cùng" },
+        { "hanzi": "孤", "pinyin": "gū", "meaning": "cô độc" },
+        { "hanzi": "昼", "pinyin": "zhòu", "meaning": "ban ngày" }
+      ],
+      "note": "'朔风' (shuò fēng) = gió lạnh mùa đông thổi từ phương bắc."
+    },
+    {
+      "id": 9,
+      "hanzi": "瞧得乱石处",
+      "pinyin": "qiáo dé luàn shí chù",
+      "meaning": "Trông về nơi đá ngổn ngang gập ghềnh",
+      "start": 55.8,
+      "end": 59.2,
+      "words": [
+        { "hanzi": "瞧", "pinyin": "qiáo", "meaning": "nhìn / ngắm" },
+        { "hanzi": "得", "pinyin": "dé", "meaning": "được" },
+        { "hanzi": "乱", "pinyin": "luàn", "meaning": "loạn / lộn xộn" },
+        { "hanzi": "石", "pinyin": "shí", "meaning": "đá" },
+        { "hanzi": "处", "pinyin": "chù", "meaning": "chỗ / nơi" }
+      ],
+      "note": "'瞧' (qiáo) là khẩu ngữ nhìn, ngắm. Âm 'q' cần bật hơi nhẹ."
+    },
+    {
+      "id": 10,
+      "hanzi": "一般嶙峋瘦",
+      "pinyin": "yī bān lín xún shòu",
+      "meaning": "Cũng gầy guộc chông chênh như thế",
+      "start": 59.5,
+      "end": 63.8,
+      "words": [
+        { "hanzi": "一", "pinyin": "yī", "meaning": "nhất" },
+        { "hanzi": "般", "pinyin": "bān", "meaning": "giống như" },
+        { "hanzi": "嶙", "pinyin": "lín", "meaning": "lởm chởm" },
+        { "hanzi": "峋", "pinyin": "xún", "meaning": "gồ ghề" },
+        { "hanzi": "瘦", "pinyin": "shòu", "meaning": "gầy" }
+      ],
+      "note": "'嶙峋' (lín xún) miêu tả vách đá hiểm trở hoặc dáng người gầy lộ xương."
+    },
+    {
+      "id": 11,
+      "hanzi": "塞外硝烟未断",
+      "pinyin": "sài wài xiāo yān wèi duàn",
+      "meaning": "Nơi ngoài biên ải khói súng chiến trận vẫn chưa từng dứt",
+      "start": 64.0,
+      "end": 68.0,
+      "words": [
+        { "hanzi": "塞", "pinyin": "sài", "meaning": "ải biên cương" },
+        { "hanzi": "外", "pinyin": "wài", "meaning": "ngoài" },
+        { "hanzi": "硝", "pinyin": "xiāo", "meaning": "thuốc súng" },
+        { "hanzi": "烟", "pinyin": "yān", "meaning": "khói" },
+        { "hanzi": "未", "pinyin": "wèi", "meaning": "chưa" },
+        { "hanzi": "断", "pinyin": "duàn", "meaning": "dứt / đứt" }
+      ],
+      "note": "'塞外' (sài wài) = phía ngoài Vạn Lý Trường Thành, vùng biên giới xa xôi."
+    },
+    {
+      "id": 12,
+      "hanzi": "黄云遍地愁",
+      "pinyin": "huáng yún biàn dì chóu",
+      "meaning": "Mây vàng bụi cát bao phủ, trải khắp nỗi sầu bi",
+      "start": 68.2,
+      "end": 72.5,
+      "words": [
+        { "hanzi": "黄", "pinyin": "huáng", "meaning": "vàng" },
+        { "hanzi": "云", "pinyin": "yún", "meaning": "mây" },
+        { "hanzi": "遍", "pinyin": "biàn", "meaning": "khắp" },
+        { "hanzi": "地", "pinyin": "dì", "meaning": "đất / chốn" },
+        { "hanzi": "愁", "pinyin": "chóu", "meaning": "sầu muộn" }
+      ],
+      "note": "'黄云' (huáng yún) chỉ mây cát vàng mù mịt nơi sa mạc biên cương."
+    },
+    {
+      "id": 13,
+      "hanzi": "侥幸红梅久",
+      "pinyin": "jiǎo xìng hóng méi jiǔ",
+      "meaning": "May thay cành hoa mai đỏ bấy lâu",
+      "start": 72.8,
+      "end": 76.5,
+      "words": [
+        { "hanzi": "侥", "pinyin": "jiǎo", "meaning": "may" },
+        { "hanzi": "幸", "pinyin": "xìng", "meaning": "mắn" },
+        { "hanzi": "红", "pinyin": "hóng", "meaning": "đỏ" },
+        { "hanzi": "梅", "pinyin": "méi", "meaning": "hoa mai" },
+        { "hanzi": "久", "pinyin": "jiǔ", "meaning": "lâu" }
+      ],
+      "note": "'侥幸' (jiǎo xìng) = may mắn, may sao. Mai đỏ tượng trưng cho ý chí kiên cường trong tuyết."
+    },
+    {
+      "id": 14,
+      "hanzi": "不曾下枝头",
+      "pinyin": "bù céng xià zhī tóu",
+      "meaning": "Vẫn chưa từng lìa rụng khỏi đầu cành",
+      "start": 76.8,
+      "end": 81.5,
+      "words": [
+        { "hanzi": "不", "pinyin": "bù", "meaning": "không" },
+        { "hanzi": "曾", "pinyin": "céng", "meaning": "từng" },
+        { "hanzi": "下", "pinyin": "xià", "meaning": "xuống / rụng" },
+        { "hanzi": "枝", "pinyin": "zhī", "meaning": "cành cây" },
+        { "hanzi": "头", "pinyin": "tóu", "meaning": "đầu" }
+      ],
+      "note": "'枝头' (zhī tóu) = đầu cành hoa. Chữ '曾' ở đây đọc là 'céng'."
     }
   ]
 }

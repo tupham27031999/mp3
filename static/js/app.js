@@ -12,6 +12,7 @@ let currentSentenceIndex = 0;
 let ytPlayer = null;
 let ytReady = false;
 let snippetTimer = null;
+let aiSpeechTimer = null;
 let karaokeAnimFrame = null;
 let isLooping = false;
 let availableVoices = [];
@@ -251,9 +252,10 @@ function nextSentence() {
 function speakWord(text) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
+  clearTimeout(aiSpeechTimer);
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'zh-CN';
-  utterance.rate = 0.7; // Slow and clear for single words
+  utterance.rate = 0.5; // Đọc chậm, chuẩn và rõ thanh điệu cho từng từ lẻ
   window.speechSynthesis.speak(utterance);
 }
 
@@ -261,15 +263,48 @@ function playAISpeech() {
   if (!('speechSynthesis' in window) || !currentSong) return;
   window.speechSynthesis.cancel();
   stopKaraokeAnimation();
+  clearTimeout(aiSpeechTimer);
 
   const sentence = currentSong.sentences[currentSentenceIndex];
-  const rate = parseFloat(document.getElementById('speed-select').value) || 0.8;
+  const rate = parseFloat(document.getElementById('speed-select').value) || 0.4;
+  const chars = Array.from(sentence.hanzi);
+  const ball = document.getElementById('bouncing-ball');
+  ball.classList.add('active');
+
+  // NẾU TỐC ĐỘ <= 0.5: ĐỌC TÁCH TỪNG CHỮ MỘT (Paced Reading)
+  // Giúp người học nghe rõ từng âm tiết, từng thanh điệu, không bị líu lưỡi
+  if (rate <= 0.5) {
+    let charIdx = 0;
+    // Khoảng cách nghỉ giữa các chữ: 0.25x -> 1200ms, 0.4x -> 850ms, 0.5x -> 700ms
+    const intervalMs = Math.round(340 / rate);
+
+    function speakNextChar() {
+      if (charIdx >= chars.length) {
+        stopKaraokeAnimation();
+        if (isLooping) {
+          aiSpeechTimer = setTimeout(playAISpeech, 1000);
+        }
+        return;
+      }
+
+      moveBallToCharIndex(charIdx);
+      const charUtterance = new SpeechSynthesisUtterance(chars[charIdx]);
+      charUtterance.lang = 'zh-CN';
+      charUtterance.rate = 0.5; // Phát âm từng chữ một thật rõ nét
+      window.speechSynthesis.speak(charUtterance);
+
+      charIdx++;
+      aiSpeechTimer = setTimeout(speakNextChar, intervalMs);
+    }
+
+    speakNextChar();
+    return;
+  }
+
+  // NẾU TỐC ĐỘ > 0.5: ĐỌC LIỀN CÂU THEO NGỮ ĐIỆU BÌNH THƯỜNG
   const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
   utterance.lang = 'zh-CN';
   utterance.rate = rate;
-
-  const ball = document.getElementById('bouncing-ball');
-  ball.classList.add('active');
 
   // Track boundary event to move bouncing ball
   utterance.onboundary = (e) => {
@@ -285,7 +320,7 @@ function playAISpeech() {
   utterance.onend = () => {
     stopKaraokeAnimation();
     if (isLooping) {
-      setTimeout(playAISpeech, 800);
+      aiSpeechTimer = setTimeout(playAISpeech, 800);
     }
   };
 
@@ -390,6 +425,7 @@ function highlightSingleWord(idx) {
 
 function stopKaraokeAnimation() {
   clearTimeout(snippetTimer);
+  clearTimeout(aiSpeechTimer);
   if (karaokeAnimFrame) cancelAnimationFrame(karaokeAnimFrame);
   
   const ball = document.getElementById('bouncing-ball');
